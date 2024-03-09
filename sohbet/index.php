@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sohbet 48447</title>
+    <title>SOHBET</title>
     <link rel="stylesheet" href="./style.css">
     <style>
 
@@ -27,9 +27,9 @@
                 <br>
                 <div>
                     <label id="label_chat" for="radio_chat">Sohbet <img src="ui/icons/chat.png" alt=""> </label>
-                    <label id="label_contacts" for="radio_contacts">kişiler <img src="ui/icons/contacts.png" alt=""></label>
-                    <label id="label_settings" for="radio_settings">ayarlar <img src="ui/icons/settings.png" alt=""></label>
-                    <label id="logout" for="radio_logout">Çıkış <img src="ui/icons/logout.png" alt=""></label>
+                    <label id="label_contacts" for="radio_contacts">Kişiler <img src="ui/icons/contacts.png" alt=""></label>
+                    <label id="label_settings" for="radio_settings">Ayarlar <img src="ui/icons/settings.png" alt=""></label>
+                    <label id="logout" for="radio_logout">Çıkış <img src="ui/icons/iconx.jpg" alt=""></label>
 
 
                 </div>
@@ -40,7 +40,7 @@
             <div id="header">
             <div id="loader_holder" class="loader_on"><img style="width: 70px;" src="ui/icons/giphy.gif" alt=""> </div>
                 <div id="image_viewer" class="image_off" onclick="close_image(event)" ></div>
-                Sohbet 48447</div>
+                Sohbet</div>
             <div id="container" style="display: flex;"  >
 
 
@@ -60,5 +60,77 @@
 </body>
 
 </html>
-<script src="./ap.js" ></script>
+<script>
 
+
+
+function sendFriendRequest(userid) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            alert(response.message);
+            var sendButton = document.querySelector("button[onclick='sendFriendRequest(\"" + userid + "\")']");
+            if (sendButton) {
+                sendButton.innerHTML = "İstek Gönderildi";
+                sendButton.disabled = true; 
+            }
+        }
+    };
+    xhttp.open("POST", "friend_request.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("friend_userid=" + userid);
+}
+
+
+
+
+
+function accepted(event) {
+    var userid = event.target.getAttribute("userid");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            alert(response.message);
+
+            event.target.innerHTML = "Arkadaşsınız";
+            event.target.disabled = true;
+            
+            var friendRequestButton = document.querySelector("button[userid='" + userid + "']");
+            if (friendRequestButton) {
+                friendRequestButton.innerHTML = "Arkadaş İsteği Gönderildi";
+                friendRequestButton.disabled = true;
+            }
+        }
+    };
+    xhttp.open("POST", "accept_friend_request.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("friend_userid=" + userid);
+}
+
+
+function removeFriend(userid) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            alert(response.message);
+
+            var friendRequestButton = document.querySelector("button[onclick='removeFriend(\"" + userid + "\")']");
+            if (friendRequestButton) {
+                friendRequestButton.innerHTML = "Arkadaşlık İsteği Gönder";
+            }
+        }
+    };
+    xhttp.open("POST", "remove_friend.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("friend_userid=" + userid);
+}
+
+
+
+
+</script>
+
+<script src="api.js"></script>

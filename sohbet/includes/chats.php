@@ -27,7 +27,7 @@ if(is_array($result)){
     $mydata = "";
 
     if(!$refresh){
-                $mydata = "Şimdi sohbet ettiğim kişi:<br>
+                $mydata = "Şimdi sohbet ettiğim kişi<br>
                         <div id='active_contact'>
                             <img src='$image'>
                             $row->username
@@ -97,7 +97,7 @@ if(is_array($result)){
         $sql = "SELECT * FROM messages WHERE (sender = :userid OR receiver = :userid) ORDER BY id DESC LIMIT 10";
         $sql = "SELECT * FROM ($sql) AS subquery GROUP BY msgid";
         $result2 = $DB->read($sql,$a);
-        $mydata = "Sohbet Ettiğim kişiler<br>";
+        $mydata = "Sohbetlerin Önizlemeleri<br>";
 
         if(is_array($result2)){
             $result2=array_reverse($result2);

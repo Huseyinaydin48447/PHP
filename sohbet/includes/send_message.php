@@ -35,14 +35,14 @@ if(is_array($result)){
         $image=$row->image;
     }
     $row->image=$image;
-    $mydata = "Now Chatting with:<br>
+    $mydata = "Şimdi sohbet ettiğim kişiler:<br>
             <div id='active_contact'>
                 <img src='$image'>
                 <br>$row->username
             </div>";
 
     $messages = "
-                <div id='messages_holder_parent' style=' height:610px;  ' >
+                <div id='messages_holder_parent' style=' height:630px;  ' >
                 <div id='messages_holder' style=' height:490px; overflow-y:scroll; ' >";
                    
            
@@ -91,7 +91,6 @@ function get_random_string_max($length){
 
 }
 
-// $info = (object)[];
 
  
 ?>

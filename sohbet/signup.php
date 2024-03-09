@@ -11,10 +11,10 @@
 <body> 
     <div id="wrapper">
         <div id="header">
-        Sohbet 48447
+        Sohbet
             <div style="font-size: 20px; font-family: myFont;  ">Signup</div>
         </div>
-        <div id="error" style=""  >Some text</div>
+        <div id="error" style=""  >text</div>
         <form  id="myform">
             <input type="text" name="username" placeholder="Username"><br>
             <input type="text" name="email" placeholder="Email"><br>
@@ -29,7 +29,8 @@
             <input type="button" value="Sign up" id="signup_button"><br>
             <br>
             <a href="login.php" style="display: block;  text-align: center; text-decoration: none; " >
-            Önceden hesabınız var mı? giriş yapın            </a>
+            Zaten hesabınız var mı? giriş yapın
+            </a>
 
         </form>
 
@@ -57,7 +58,7 @@
         e.preventDefault();
     
         signup_button.disabled = true;
-        signup_button.value = "Yükleniyor...lütfen bekleyin...";
+        signup_button.value = "Loading...Please wait...";
       
         var myform = _("myform");
         var inputs = myform.getElementsByTagName("INPUT");
@@ -107,7 +108,7 @@
       function handle_result(result) {
         var data = JSON.parse(result);
         if (data.data_type === "info") {
-          alert("Profiliniz oluşturuldu!");
+          alert("Bilgileriniz kayıt altına alındı!");
           window.location = 'login.php';
 
         } else {

@@ -7,24 +7,24 @@ $data['userid'] = $_SESSION['userid'];
 
 $data['username'] = $DATA_OBJ->username;
 if (empty($DATA_OBJ->username)) {
-    $Error .= "Lütfen geçerli bir kullanıcı adı girin.<br>";
+    $Error .= "Please enter a valid username .<br>";
 } else {
     if (strlen($DATA_OBJ->username) < 3) {
-        $Error .= "username must be at least 3 characters long. <br>";
+        $Error .= "kullanıcı adı en az 3 karakter uzunluğunda olmalıdır. <br>";
     }
     if (!preg_match("/^[a-z A-Z]*$/", $DATA_OBJ->username)) {
-        $Error .= "Lütfen geçerli bir kullanıcı adı girin .<br>";
+        $Error .= "Please enter a valid username .<br>";
     }
 }
 
 
 $data['email'] = $DATA_OBJ->email;
 if (empty($DATA_OBJ->email)) {
-    $Error .= "Lütfen geçerli bir email adı girin .<br>";
+    $Error .= "lütfen geçerli eposta adresini giriniz .<br>";
 } else {
 
     if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $DATA_OBJ->email)) {
-        $Error .= "Lütfen geçerli bir email adı girin .<br>";
+        $Error .= "lütfen geçerli eposta adresini giriniz .<br>";
     }
 }
 
@@ -34,7 +34,7 @@ if (empty($DATA_OBJ->gender)) {
 } else {
 
     if ($DATA_OBJ->gender != "Male" && $DATA_OBJ->gender != "Female") {
-        $Error .= "Lütfen geçerli bir cinsiyet seçin .<br>";
+        $Error .= "Lütfen geçerli bir cinsiyet seçin.<br>";
     }
 }
 
@@ -61,11 +61,11 @@ if ($Error == "") {
     $result = $DB->write($query, $data);
 
     if ($result) {
-        $info->message = "Your data was saved";
+        $info->message = "Verileriniz kaydedildi";
         $info->data_type = "save_settings";
         echo json_encode($info);
     } else {
-        $info->message = "Your data was NOT saved due to an error";
+        $info->message = "Bir hata nedeniyle verileriniz KAYDEDİLMEMİŞTİR";
         $info->data_type = "save_settings error";
         echo json_encode($info);
     }

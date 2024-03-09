@@ -29,11 +29,11 @@ if (empty($DATA_OBJ->email)) {
 
 $data['gender'] =  isset($DATA_OBJ->gender) ?$DATA_OBJ->gender : null ;
 if (empty($DATA_OBJ->gender)) {
-    $Error .= "Lütfen bir cinsiyet seçin.<br>";
+    $Error .= "Lütfen bir cinsiyet seçin .<br>";
 } else {
 
     if ($DATA_OBJ->gender != "Male" && $DATA_OBJ->gender != "Female") {
-        $Error .= "Lütfen geçerli bir cinsiyet seçin.<br>";
+        $Error .= "Lütfen geçerli bir cinsiyet seçin .<br>";
     }
 }
  
@@ -42,10 +42,10 @@ $data['password'] = $DATA_OBJ->password;
 $password = $DATA_OBJ->password2;
 
 if (empty($DATA_OBJ->password)) {
-    $Error .= "Lütfen geçerli bir şifre giriniz .<br>";
+    $Error .= "Lütfen geçerli bir şifre giriniz.<br>";
 } else {
     if ($DATA_OBJ->password != $DATA_OBJ->password2) {
-        $Error .= "password must match. <br>";
+        $Error .= "şifre uyuşmalı. <br>";
     }
     if (strlen($DATA_OBJ->password) < 8) {
         $Error .= "şifre en az 8 karakter uzunluğunda olmalıdır. <br>";
@@ -63,7 +63,7 @@ if ($Error == "") {
         $info->data_type = "info";
         echo json_encode($info);
     } else {
-        $info->message = "Profiliniz bir hata nedeniyle oluşturulmadı!!";
+        $info->message = "Profiliniz bir hata nedeniyle oluşturuldu";
         $info->data_type = "error";
         echo json_encode($info);
     }

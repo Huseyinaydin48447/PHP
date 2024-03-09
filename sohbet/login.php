@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHAT</title>
+    <title>Sohbet</title>
     <link rel="stylesheet" href="kayitsignup.css">
 </head>
 
 <body>
     <div id="wrapper">
         <div id="header">
-        Sohbet 48447
+        Sohbet
             <div style="font-size: 20px; font-family: myFont;  ">Login</div>
         </div>
-        <div id="error"   >Some text</div>
+        <div id="error"   > text</div>
         <form action="" id="myform">
             <input type="text" name="email" placeholder="Email"><br>
 
@@ -45,12 +45,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var login_button = _("login_button");
     login_button.addEventListener("click", collect_data);
 
+    // Rest of your code...
 });
 
 function collect_data(e){
     e.preventDefault();
     login_button.disabled=true;
-    login_button.value="Yükleniyor...lütfen bekleyin...";
+    login_button.value="Loading...Please wait...";
  
 
     var myform=_("myform");

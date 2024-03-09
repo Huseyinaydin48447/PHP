@@ -3,7 +3,7 @@
 $info=(Object)[];
 
 $data=false;
-
+//validate info
 $data['userid']=$_SESSION['userid'];
 
 if($Error==""){
@@ -15,8 +15,8 @@ if($Error==""){
         $result=$result[0];
         $result->data_type="user_info";
 
-
-        $image=($result->gender == "Male")? "ui/images/user_male.jpg" : "ui/images/user_female.jpg";
+          //check if image exists
+    $image=($result->gender == "Male")? "ui/images/user_male.jpg" : "ui/images/user_female.jpg";
         if(file_exists($result->image)){
             $image=$result->image;
         }
@@ -24,7 +24,7 @@ if($Error==""){
 
         echo json_encode($result);
     }else{
-        $info->message="Yanlış email";
+        $info->message="Wrong email";
         $info->data_type="error";
         echo json_encode($result);
 

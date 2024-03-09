@@ -4,7 +4,7 @@ session_start();
 $DATA_RAW = file_get_contents("php://input");
 $DATA_OBJ = json_decode($DATA_RAW);
 $info = (object)[];
-
+//check if logged in
 if (!isset($_SESSION['userid'])) {
     if (isset($DATA_OBJ->data_type) && $DATA_OBJ->data_type != "login" && $DATA_OBJ->data_type != "signup") {
         $info->logged_in = false;
@@ -74,7 +74,7 @@ function message_left($data, $row)
         $data->message<br><br>";
 
         if($data->files !="" && file_exists($data->files)) {
-            $a .="<img src='$data->files' style='width:100%; cursor:pointer;' onclick='image_show(event)' /><br>";
+            $a .="<img src='$data->files' style='width:100%; height: 200px; cursor:pointer;' onclick='image_show(event)' /><br>";
   
         }
 
@@ -99,9 +99,9 @@ function message_right($data, $row)
     <div>";
 
     if ($data->seen) {
-        $a .= "<img src='ui/images/tick.png' style=''/>";
+        $a .= "<img src='ui/images/tick.png' style='   opacity: 1; z-index: 1; font-size: 14px'/>";
     } elseif ($data->received) {
-        $a .= "<img src='ui/images/tick_grey.png' style=''/>";
+        $a .= "<img src='ui/images/tick_grey.png' style='  opacity: 99999; z-index: 99999; font-size: 14px '/>";
     }
 
 
@@ -111,7 +111,7 @@ function message_right($data, $row)
         $data->message<br><br>";
 
         if($data->files !="" && file_exists($data->files)) {
-            $a .="<img src='$data->files' style='width:100%; cursor:pointer;' onclick='image_show(event)' /><br>";
+            $a .="<img src='$data->files' style='width:100%; height: 200px; cursor:pointer;' onclick='image_show(event)' /><br>";
   
         }
 
@@ -126,12 +126,13 @@ function message_controls()
 
     return "
     </div>
-    <span onclick='delete_thread(event)' style='color:purple; cursor:pointer;' >Mesajların hepsini silme</span>
+    <span onclick='delete_thread(event)' style='color:purple; cursor:pointer;' >Sohbetin hepsini sil</span>
     <div style='display:flex; width:100%; height:40px;' > 
-        <label for='message_file' > <img src='ui/icons/clip.png' style='opacity:0.8; width:30px; margin:5px; cursor:pointer; ' > </label>
+        <label for='message_file' > <img src='./uploads/ess.jpg' style='opacity:0.8; width:55px; height:40px; margin:4px; cursor:pointer;   opacity: 1; /* Arkaplan opaklığını 1 olarak ayarlayarak arka planı tamamen kapatır */
+        z-index: 1; ' > </label>
         <input type='file' id='message_file' name='file' style='display:none' onchange='send_image(this.files)' />
-        <input id='message_text' onkeyup='enter_pressed(event)' style='flex:6; border:solid thin #thin #ccc; border-bottom:none; font-size:14px; padding:4px'  type='text' placeHolder='type your message' />
-        <input style='flex:1; cursor:pointer;'  type='button' value='send' onclick='send_message(event)' />
+        <input id='message_text' onkeyup='enter_pressed(event)' style='flex:6; border:solid thin #thin #ccc; border-bottom:none; font-size:14px; padding:4px'  type='text' placeHolder='Mesajını yaz' />
+        <input style='flex:1; cursor:pointer;'  type='button' value='Gönder' onclick='send_message(event)' />
 
     </div>
     </div>
