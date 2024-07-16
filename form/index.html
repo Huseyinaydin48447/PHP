@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="SMS Pazarlama stratejileri ile işinizi büyütün. Toplu SMS gönderme ve SMS pazarlama yöntemleri hakkında bilgi alın.">
+    <meta name="keywords" content="SMS Pazarlama, Toplu SMS, SMS Gönderme, SMS Pazarlama Stratejileri">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Pazarlama - VatanSMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <script>
+        function validateForm() {
+            var phone = document.forms["contactForm"]["phone"].value;
+            var phonePattern = /^05\d{9}$/;
+
+            if (!phonePattern.test(phone)) {
+                alert("Geçersiz telefon numarası. Telefon numarası 05xx ile başlamalı ve 11 haneli olmalıdır.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>İletişim</h1>
+    
+    <form name="contactForm" action="send-email.php" method="post" onsubmit="return validateForm()">
+        <input type="text" name="name" required placeholder="Ad Soyad"><br>
+        <input type="email" name="email" required placeholder="E-posta"><br>
+        <input type="text" name="phone" required placeholder="Cep Telefonu"><br>
+        <textarea name="message" cols="30" rows="10" placeholder="Mesajınız"></textarea><br>
+        <button type="submit">Gönder</button>
+    </form>
+    
+</body>
+</html>
